@@ -1,0 +1,5 @@
+.container {
+    display: grid;
+    grid-auto-columns: repeat(auto-fit, minmax(200px, 3fr));
+    grid-auto-flow: column;
+}
