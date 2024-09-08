@@ -1,5 +1,11 @@
 const myLibrary = [];
 const pageContent = document.querySelector(".container");
+const showDialogue = document.querySelector("#showDialogue")
+const formDialogue = document.querySelector("dialog");
+
+showDialogue.addEventListener("click", () => {
+    formDialogue.showModal();
+})
 
 function Book(name, author, pages, isRead) {
     this.name = name;

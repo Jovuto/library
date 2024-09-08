@@ -8,7 +8,35 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <button id="showDialogue">Add a book/manga!</button>
     <div class="container">
     </div>
+    <dialog>
+        <form>
+            <div>
+                <label for="name">Name of book or manga</label>
+                <input type="text" id="name">
+            </div>
+            <div>
+                <label for="author">Name of author</label>
+                <input type="text" id="author">
+            </div>
+            <div>
+                <label for="pages">Number of pages (or volumes if Manga)</label>
+                <input type="number" id="pages">
+            </div>
+            <div>
+                <label for="bookType">Type of book?</label>
+                <select name="bookType" id="bookType">
+                    <option value="book">Book</option>
+                    <option value="Manga">Manga</option>
+                </select>
+            </div>
+            <div>
+                <button id="confirmButton" value="default">Add the book/manga</button>
+                <button value="cancel" formmethod="dialog">Cancel</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>

@@ -3,3 +3,12 @@
     grid-auto-columns: repeat(auto-fit, minmax(200px, 3fr));
     grid-auto-flow: column;
 }
+
+form {
+    display: grid;
+    gap: 50px;
+}
+
+input {
+    display: block;
+}
