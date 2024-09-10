@@ -1,7 +1,7 @@
 .container {
     display: grid;
-    grid-auto-columns: repeat(auto-fit, minmax(200px, 3fr));
-    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 3fr));
+    gap: 20px;
 }
 
 form {
@@ -11,4 +11,16 @@ form {
 
 input {
     display: block;
+}
+
+.book,
+.manga {
+    border: solid;
+    * {
+        margin: 10px;
+    }
+}
+
+.showDialogue {
+    margin: 5px;
 }
