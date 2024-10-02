@@ -24,3 +24,11 @@ input {
 .showDialogue {
     margin: 5px;
 }
+
+.isFinishedDiv {
+    display: none;
+}
+
+.indexNum {
+    font-size: 9px;
+}

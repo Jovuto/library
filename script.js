@@ -7,6 +7,10 @@ const authorInput = document.querySelector("#author");
 const pageInput = document.querySelector("#pages");
 const typeInput = document.querySelector("#bookType");
 const confirmButton = document.querySelector("#confirmButton");
+const bookOptions = document.querySelector("#bookType");
+const isFinishedDiv = document.querySelector(".isFinishedDiv");
+const isReadCheckbox = document.querySelector("#isRead");
+const isFinishedCheckbox = document.querySelector("#isFinished");
 
 showDialogue.addEventListener("click", () => {
     formDialogue.showModal();
@@ -46,43 +50,66 @@ addBookToLibrary(dragonBall);
 refreshLibrary();
 
 function refreshLibrary() {
+    pageContent.innerHTML = '';
+    let i = -1;
     myLibrary.forEach((book) => {
+        i++;
         console.log(book);
         if (book instanceof Book){
-            pageContent.insertAdjacentHTML("afterbegin", `<div class='book'>
+            console.log("Book added!");
+            pageContent.insertAdjacentHTML("beforeend", `<div class='book'>
                 <h2>${book.name}</h2>
-                <p>${book.author}</p>
-                <p>${book.pages}</p>
+                <p>Author: ${book.author}</p>
+                <p>Pages: ${book.pages}</p>
                 <p>Read: ${book.isRead}</p>
+                <p class="indexNum">${i}</p>
+                <button class="deleteButton>Delete</button>
             </div>`);
+            console.log("book printed");
         }
         else {
-            pageContent.insertAdjacentHTML("afterbegin", `<div class="manga">
+            console.log("Manga added!")
+            pageContent.insertAdjacentHTML("beforeend", `<div class="manga">
                 <h2>${book.name}</h2>
-                <p>${book.author}</p>
-                <p>${book.volumes}</p>
+                <p>Author: ${book.author}</p>
+                <p>Volumes: ${book.volumes}</p>
                 <p>Series finished: ${book.isFinished}</p>
                 <p>Read: ${book.isRead}</p>
+                <p class="indexNum">${i}</p>
+                <button class="deleteButton">Delete</button>
             </div>`)
+            console.log("manga printed");
         }
         
     })
 }
 
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    refreshLibrary();
+}
+
+bookOptions.addEventListener("change", function() {
+    if (bookOptions.value == "manga") {
+        isFinishedDiv.style.display = "block";
+    }
+    else {
+        console.log("It is working");
+        isFinishedDiv.style.display = "none";
+    }
+})
+
 confirmButton.addEventListener("click", () => {
 
     console.log("form submitted!");
 
-    addBooks(typeInput.value, nameInput.value, authorInput.value, pageInput.value);
+    addBooks(typeInput.value, nameInput.value, authorInput.value, pageInput.value, isReadCheckbox.checked, isFinishedCheckbox.checked);
     formDialogue.close();
 
 })
 
 function addBooks(bookType, name, author, pagesOrVolumes, isRead, isFinished) {
-    let mangaCollection = document.querySelector(".manga");
-    let bookCollection = document.querySelector(".book");
-    pageContent.innerHTML = '';
-    if (bookType === "Book") {
+    if (bookType == "book") {
         let newBook = new Book(name, author, pagesOrVolumes, isRead);
         addBookToLibrary(newBook);
     }
