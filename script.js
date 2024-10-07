@@ -11,6 +11,7 @@ const bookOptions = document.querySelector("#bookType");
 const isFinishedDiv = document.querySelector(".isFinishedDiv");
 const isReadCheckbox = document.querySelector("#isRead");
 const isFinishedCheckbox = document.querySelector("#isFinished");
+const deleteButton = document.querySelectorAll(".deleteButton");
 
 showDialogue.addEventListener("click", () => {
     formDialogue.showModal();
@@ -49,6 +50,13 @@ addBookToLibrary(dragonBall);
 
 refreshLibrary();
 
+pageContent.addEventListener("click", (e) => {
+    if (e.target.classList.contains("deleteButton")){
+        console.log("Delete button clicked!")
+        removeBook(e.target.dataset.ArrayIndex);
+    }
+})
+
 function refreshLibrary() {
     pageContent.innerHTML = '';
     let i = -1;
@@ -62,10 +70,8 @@ function refreshLibrary() {
                 <p>Author: ${book.author}</p>
                 <p>Pages: ${book.pages}</p>
                 <p>Read: ${book.isRead}</p>
-                <p class="indexNum">${i}</p>
-                <button class="deleteButton>Delete</button>
+                <button class="deleteButton" data-array-index='${i}'>Delete</button>
             </div>`);
-            console.log("book printed");
         }
         else {
             console.log("Manga added!")
@@ -75,14 +81,13 @@ function refreshLibrary() {
                 <p>Volumes: ${book.volumes}</p>
                 <p>Series finished: ${book.isFinished}</p>
                 <p>Read: ${book.isRead}</p>
-                <p class="indexNum">${i}</p>
-                <button class="deleteButton">Delete</button>
+                <button class="deleteButton" data-array-index='${i}'>Delete</button>
             </div>`)
             console.log("manga printed");
         }
+        })
         
-    })
-}
+    }
 
 function removeBook(index) {
     myLibrary.splice(index, 1);
