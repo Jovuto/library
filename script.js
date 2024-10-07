@@ -1,6 +1,6 @@
 const myLibrary = [];
 const pageContent = document.querySelector(".container");
-const showDialogue = document.querySelector("#showDialogue")
+const showDialogue = document.querySelector("#showDialogue");
 const formDialogue = document.querySelector("dialog");
 const nameInput = document.querySelector("#name");
 const authorInput = document.querySelector("#author");
@@ -89,7 +89,20 @@ function refreshLibrary() {
     myLibrary.forEach((book) => {
         i++;
         console.log(book);
-        if (book instanceof Book){
+        if (book instanceof Manga){
+                console.log("Manga added!")
+                pageContent.insertAdjacentHTML("beforeend", `<div class="manga">
+                    <h2>${book.name}</h2>
+                    <p>Author: ${book.author}</p>
+                    <p>Volumes: ${book.volumes}</p>
+                    <p>Series finished: ${book.isFinished}</p>
+                    <p>Read: ${book.isRead}</p>
+                    <button class="deleteButton" data-array-index=${i}>Delete</button>
+                    <button class="readButton" data-array-index=${i}>Toggle Read</button>
+                </div>`)
+                console.log("manga printed");
+            }
+        else{
             console.log("Book added!");
             pageContent.insertAdjacentHTML("beforeend", `<div class='book'>
                 <h2>${book.name}</h2>
@@ -99,19 +112,6 @@ function refreshLibrary() {
                 <button class="deleteButton" data-array-index=${i}>Delete</button>
                 <button class="readButton" data-array-index=${i}>Toggle Read</button>
             </div>`);
-        }
-        else {
-            console.log("Manga added!")
-            pageContent.insertAdjacentHTML("beforeend", `<div class="manga">
-                <h2>${book.name}</h2>
-                <p>Author: ${book.author}</p>
-                <p>Volumes: ${book.volumes}</p>
-                <p>Series finished: ${book.isFinished}</p>
-                <p>Read: ${book.isRead}</p>
-                <button class="deleteButton" data-array-index=${i}>Delete</button>
-                <button class="readButton" data-array-index=${i}>Toggle Read</button>
-            </div>`)
-            console.log("manga printed");
         }
         })
         
