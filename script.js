@@ -18,27 +18,30 @@ showDialogue.addEventListener("click", () => {
     formDialogue.showModal();
 })
 
-function Book(name, author, pages, isRead) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
+class Book {
+    constructor (name, author, pages, isRead) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+
+    toggleRead() {
+        
+            this.isRead = !this.isRead;
+            refreshLibrary();
+        
+    }
 }
 
-Book.prototype.toggleRead = function() {
-    this.isRead = !this.isRead;
-    refreshLibrary();
-}
+class Manga extends Book {
 
-function Manga(name, author, volumes, isFinished, isRead) {
-    this.name = name;
-    this.author = author;
-    this.volumes = volumes;
-    this.isFinished = isFinished;
-    this.isRead = isRead;
+    constructor (name, author, volumes, isFinished, isRead) {
+        super(name, author, volumes, isRead);
+        this.volumes = volumes;
+        this.isFinished = isFinished;
+    }
 }
-
-Object.setPrototypeOf(Manga.prototype, Book.prototype);
 
 const onePiece = new Manga("One Piece", "Eiichiro Oda", 109, false, false);
 const caseClosed = new Manga("Case Closed", "Gosho Aoyama", 105, false, false);
